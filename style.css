@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  padding: 1rem;
+  background-color: midnightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  gap: 1rem;
+}
+
+.books {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.books .card {
+  color: white;
+  background-color: cornflowerblue;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.books .card .book-title {
+  color: wheat;
+  align-self: center;
+}
+
+.books .card .info-text {
+  color: wheat;
+  border-bottom: 2px solid wheat;
+}
+
+.books .card .interaction-buttons {
+    align-self: flex-end;
+}
+
+.books .card .delete-btn {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 100%;
+    background-color: red;
+    color: white;
+}
+
+.books .card .delete-btn:hover {
+    background-color: #ff5252;
+    cursor: pointer;
+}
+
+
+.create-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: midnightblue;
+  color: white;
+  border: none;
+  border-radius: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-btn:hover {
+    background-color: cornflowerblue;
+    cursor: pointer;
+}
+
+.create-btn:active {
+    background-color: #86a9ec;
+}
