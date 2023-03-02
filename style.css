@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .navbar {
   padding: 1rem;
   background-color: midnightblue;
@@ -43,25 +47,29 @@
 }
 
 .books .card .interaction-buttons {
-    align-self: flex-end;
+  align-self: flex-end;
 }
 
 .books .card .delete-btn {
-    width: 20px;
-    height: 20px;
-    border: none;
-    border-radius: 100%;
-    background-color: red;
-    color: white;
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 100%;
+  background-color: red;
+  color: white;
 }
 
 .books .card .delete-btn:hover {
-    background-color: #ff5252;
-    cursor: pointer;
+  background-color: #ff5252;
 }
 
+.books .card .book-title {
+  font-size: 1.5rem;
+}
 
 .create-btn {
+  cursor: pointer;
   width: 60px;
   height: 60px;
   font-size: 30px;
@@ -72,7 +80,7 @@
   color: white;
   border: none;
   border-radius: 100%;
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
 
@@ -82,10 +90,71 @@
 }
 
 .create-btn:hover {
-    background-color: cornflowerblue;
-    cursor: pointer;
+  background-color: #4b4b96;
 }
 
 .create-btn:active {
-    background-color: #86a9ec;
+  background-color: #66669c;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid white;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: cornflowerblue;
+  color: white;
+  width: 500px;
+  max-width: 80%;
+}
+
+.modal.active {
+  transform: translate(-50%, -50%) scale(1)
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid white;
+}
+
+.modal-header .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-header .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 10px 15px;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
 }

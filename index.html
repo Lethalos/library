@@ -16,49 +16,66 @@
       </div>
     </header>
 
-    <section class="books">
-      <div class="card">
-        <div class="interaction-buttons">
-          <button class="delete-btn">x</button>
-        </div>
-        <div class="book-title">Title</div>
-        <div class="info-text">Infos</div>
-        <div class="author">Author:</div>
-        <div class="page-number">Number of pages:</div>
-        <div class="is-read">Is read:</div>
-      </div>
-      <div class="card">
-        <div class="interaction-buttons">
-          <button class="delete-btn">x</button>
-        </div>
-        <div class="book-title">Title</div>
-        <div class="info-text">Infos</div>
-        <div class="author">Author:</div>
-        <div class="page-number">Number of pages:</div>
-        <div class="is-read">Is read:</div>
-      </div>
-      <div class="card">
-        <div class="interaction-buttons">
-          <button class="delete-btn">x</button>
-        </div>
-        <div class="book-title">Title</div>
-        <div class="info-text">Infos</div>
-        <div class="author">Author:</div>
-        <div class="page-number">Number of pages:</div>
-        <div class="is-read">Is read:</div>
-      </div>
-      <div class="card">
-        <div class="interaction-buttons">
-          <button class="delete-btn">x</button>
-        </div>
-        <div class="book-title">Title</div>
-        <div class="info-text">Infos</div>
-        <div class="author">Author:</div>
-        <div class="page-number">Number of pages:</div>
-        <div class="is-read">Is read:</div>
-      </div>
-    </section>
+    <section class="books"></section>
 
-    <button class="create-btn">+</button>
+    <button data-modal-target="#modal" class="create-btn">+</button>
+
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div class="title">Add a book</div>
+        <button data-close-button class="close-button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form action="#" method="get">
+          <div>
+            <label for="book-title">Book Title</label>
+            <input
+              type="text"
+              name="book-title"
+              id="book-title"
+              placeholder="Example Name"
+              required
+            />
+          </div>
+          <div>
+            <label for="author">Author</label>
+            <input
+              type="text"
+              name="author"
+              id="author"
+              placeholder="John Doe"
+              required
+            />
+          </div>
+          <div>
+            <label for="page">Number of Pages</label>
+            <input
+              type="text"
+              name="page"
+              id="page"
+              placeholder="294"
+              required
+            />
+          </div>
+          <div>
+            <div>
+              <input type="radio" name="is-read" id="read" required />
+              <label for="read">Read</label>
+            </div>
+            <div>
+              <input type="radio" name="is-read" id="not-read" required />
+              <label for="not-read">Not read</label>
+            </div>
+          </div>
+          <input
+            data-close-button
+            type="submit"
+            value="Send Request"
+            class="submit-btn"
+          />
+        </form>
+      </div>
+    </div>
+    <div id="overlay"></div>
   </body>
 </html>
