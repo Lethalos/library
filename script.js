@@ -96,11 +96,13 @@ function resetForm() {
   authorInput.value = "";
   pageInput.value = "";
   readInput.checked = true;
-  readInput.checked = false;
 }
 
 submitBtn.addEventListener("click", (e) => {
   let isRead = readInput.checked;
+  if (bookTitleInput.value == false || authorInput.value == false || pageInput.value == false) {
+    return;
+  }
   const newBook = new Book(
     myLibrary.length,
     bookTitleInput.value,
@@ -111,6 +113,13 @@ submitBtn.addEventListener("click", (e) => {
 
   addBookToLibrary(newBook);
   displayLibrary();
+  
+  // Close modal and reset
+  const modals = document.querySelectorAll(".modal.active");
+  modals.forEach((modal) => {
+    closeModal(modal);
+  });
   resetForm();
+  
   e.preventDefault();
 });

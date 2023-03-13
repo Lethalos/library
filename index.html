@@ -27,8 +27,8 @@
       </div>
       <div class="modal-body">
         <form action="#" method="get">
-          <div>
-            <label for="book-title">Book Title</label>
+          <div class="modal-input">
+            <label for="book-title">Book Title*</label>
             <input
               type="text"
               name="book-title"
@@ -37,8 +37,8 @@
               required
             />
           </div>
-          <div>
-            <label for="author">Author</label>
+          <div class="modal-input">
+            <label for="author">Author*</label>
             <input
               type="text"
               name="author"
@@ -47,8 +47,8 @@
               required
             />
           </div>
-          <div>
-            <label for="page">Number of Pages</label>
+          <div class="modal-input">
+            <label for="page">Number of Pages*</label>
             <input
               type="text"
               name="page"
@@ -57,22 +57,28 @@
               required
             />
           </div>
-          <div>
+          <div class="modal-input">
             <div>
-              <input type="radio" name="is-read" id="read" required />
+              <input
+                type="radio"
+                name="is-read"
+                id="read"
+                value="read"
+                checked
+              />
               <label for="read">Read</label>
             </div>
-            <div>
-              <input type="radio" name="is-read" id="not-read" required />
+            <div class="modal-input">
+              <input
+                type="radio"
+                name="is-read"
+                id="not-read"
+                value="not-read"
+              />
               <label for="not-read">Not read</label>
             </div>
           </div>
-          <input
-            data-close-button
-            type="submit"
-            value="Send Request"
-            class="submit-btn"
-          />
+          <input type="submit" value="Send Request" class="submit-btn" />
         </form>
       </div>
     </div>

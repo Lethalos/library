@@ -113,7 +113,7 @@ body {
 }
 
 .modal.active {
-  transform: translate(-50%, -50%) scale(1)
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .modal-header {
@@ -140,6 +140,25 @@ body {
 
 .modal-body {
   padding: 10px 15px;
+}
+
+.modal-body .modal-input {
+  padding: 10px 0;
+}
+
+.modal-body input {
+  padding: 8px 5px;
+  border: none;
+  outline: none;
+  background-color: white;
+}
+
+.modal-body input:hover {
+  background-color: aliceblue;
+}
+
+.modal-body .submit-btn {
+  cursor: pointer;
 }
 
 #overlay {
