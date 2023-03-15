@@ -15,10 +15,8 @@ function Book(id, title, author, numOfPages, isRead) {
   };
 }
 
-const theHobbit = new Book(1, "Hobbit", "JRR", 295, true);
-const atomicHabits = new Book(2, "Atomic Habits", "James Clear", 567, false);
-console.log(theHobbit.info());
-console.log(atomicHabits.info());
+const theHobbit = new Book(1, "Hobbit", "J.R.R. Tolkien", 304, true);
+const atomicHabits = new Book(2, "Atomic Habits", "James Clear", 320, false);
 
 let books = document.querySelector(".books");
 
@@ -26,7 +24,7 @@ function addBookToLibrary(book) {
   let bookHTML = `
     <div class="card">
       <div class="interaction-buttons">
-        <button class="delete-btn">&times;</button>
+        <div class="delete-btn">&times;</div>
       </div>
       <div class="book-title">${book.title}</div>
       <div class="info-text">Infos</div>
@@ -38,11 +36,23 @@ function addBookToLibrary(book) {
   myLibrary.push(bookHTML);
 }
 
+function deleteBookFromLibrary(index) {
+  myLibrary.splice(index);
+  displayLibrary();
+}
+
 function displayLibrary() {
   books.innerHTML = "";
   myLibrary.forEach((bookHTML) => {
     books.innerHTML += bookHTML;
   });
+
+  const bookDeleteButtons = document.querySelectorAll(".delete-btn");
+  for (let i = 0; i < bookDeleteButtons.length; i++) {
+    bookDeleteButtons[i].addEventListener("click", () => {
+      deleteBookFromLibrary(i);
+    });
+  }
 }
 
 addBookToLibrary(theHobbit);
@@ -100,7 +110,11 @@ function resetForm() {
 
 submitBtn.addEventListener("click", (e) => {
   let isRead = readInput.checked;
-  if (bookTitleInput.value == false || authorInput.value == false || pageInput.value == false) {
+  if (
+    bookTitleInput.value == false ||
+    authorInput.value == false ||
+    pageInput.value == false
+  ) {
     return;
   }
   const newBook = new Book(
@@ -113,13 +127,13 @@ submitBtn.addEventListener("click", (e) => {
 
   addBookToLibrary(newBook);
   displayLibrary();
-  
+
   // Close modal and reset
   const modals = document.querySelectorAll(".modal.active");
   modals.forEach((modal) => {
     closeModal(modal);
   });
   resetForm();
-  
+
   e.preventDefault();
 });
