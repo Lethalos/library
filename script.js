@@ -6,8 +6,8 @@ function Book(id, title, author, numOfPages, isRead) {
   this.author = author;
   this.numOfPages = numOfPages;
   this.isRead = isRead;
-  this.info = function () {
-    if (this.isRead) {
+  this.info = function (isRead) {
+    if (isRead) {
       return `The ${this.title} by ${this.author}, ${this.numOfPages} pages, read`;
     } else {
       return `The ${this.title} by ${this.author}, ${this.numOfPages} pages, not read yet`;
@@ -21,6 +21,13 @@ const atomicHabits = new Book(2, "Atomic Habits", "James Clear", 320, false);
 let books = document.querySelector(".books");
 
 function addBookToLibrary(book) {
+  let buttonText;
+  if (book.isRead) {
+    buttonText = "Not read";
+  } else {
+    buttonText = "Read";
+  }
+
   let bookHTML = `
     <div class="card">
       <div class="interaction-buttons">
@@ -30,7 +37,8 @@ function addBookToLibrary(book) {
       <div class="info-text">Infos</div>
       <div class="author">Author: ${book.author}</div>
       <div class="page-number">Number of pages: ${book.numOfPages}</div>
-      <div class="is-read">${book.info()}</div>
+      <div class="is-read">${book.info(book.isRead)}</div>
+      <button class="read-toggle-button">${buttonText}</button>
     </div>
   `;
   myLibrary.push(bookHTML);
@@ -42,17 +50,33 @@ function deleteBookFromLibrary(index) {
 }
 
 function displayLibrary() {
-  books.innerHTML = "";
+  //books.innerHTML = "";
   myLibrary.forEach((bookHTML) => {
     books.innerHTML += bookHTML;
   });
 
   const bookDeleteButtons = document.querySelectorAll(".delete-btn");
+
   for (let i = 0; i < bookDeleteButtons.length; i++) {
     bookDeleteButtons[i].addEventListener("click", () => {
       deleteBookFromLibrary(i);
     });
   }
+
+  const readToggleButtons = document.querySelectorAll(".read-toggle-button");
+
+  readToggleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      button.classList.toggle("not-read");
+      if (button.classList.contains("not-read")) {
+        button.innerText = "Read";
+        button.parentElement.style.backgroundColor = "gray";
+      } else {
+        button.innerText = "Not read";
+        button.parentElement.style.backgroundColor = "cornflowerblue";
+      }
+    });
+  });
 }
 
 addBookToLibrary(theHobbit);

@@ -6,6 +6,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  --transition-delay: 0.5s;
 }
 
 .navbar {
@@ -27,13 +28,14 @@ body {
 }
 
 .books .card {
-  color: white;
   background-color: cornflowerblue;
+  color: white;
   border-radius: 8px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  transition: var(--transition-delay);
 }
 
 .books .card .book-title {
@@ -58,6 +60,27 @@ body {
 
 .books .card .book-title {
   font-size: 1.5rem;
+}
+
+.books .card .read-toggle-button {
+  --button-color: white;
+  --text-color: #6262cf;
+
+  align-self: self-end;
+  width: 100px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: var(--button-color);
+  color: var(--text-color);
+  transition: var(--transition-delay);
+}
+
+.books .card .read-toggle-button.not-read {
+  --button-color: #6262cf;
+  --text-color: white;
 }
 
 .create-btn {
@@ -141,14 +164,14 @@ body {
   gap: 10px;
 }
 
-.modal-body input {
+.modal-body input[type="text"] {
   padding: 8px 5px;
   border: none;
   border-radius: 10px;
   outline: none;
 }
 
-.modal-body input:hover {
+.modal-body input[type="text"]:hover {
   background-color: aliceblue;
 }
 
