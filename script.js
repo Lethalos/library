@@ -1,7 +1,7 @@
+let myBooks = [];
 let myLibrary = [];
 
-function Book(id, title, author, numOfPages, isRead) {
-  this.id = id;
+function Book(title, author, numOfPages, isRead) {
   this.title = title;
   this.author = author;
   this.numOfPages = numOfPages;
@@ -15,20 +15,14 @@ function Book(id, title, author, numOfPages, isRead) {
   };
 }
 
-const theHobbit = new Book(1, "Hobbit", "J.R.R. Tolkien", 304, true);
-const atomicHabits = new Book(2, "Atomic Habits", "James Clear", 320, false);
+const theHobbit = new Book("Hobbit", "J.R.R. Tolkien", 304, true);
+const atomicHabits = new Book("Atomic Habits", "James Clear", 320, false);
 
-let books = document.querySelector(".books");
-
-function addBookToLibrary(book) {
-  let buttonText;
+// Book object to HTML string
+function createBookHTML(book) {
+  let bookHTML = "";
   if (book.isRead) {
-    buttonText = "Not read";
-  } else {
-    buttonText = "Read";
-  }
-
-  let bookHTML = `
+    bookHTML = `
     <div class="card">
       <div class="interaction-buttons">
         <div class="delete-btn">&times;</div>
@@ -38,19 +32,52 @@ function addBookToLibrary(book) {
       <div class="author">Author: ${book.author}</div>
       <div class="page-number">Number of pages: ${book.numOfPages}</div>
       <div class="is-read">${book.info(book.isRead)}</div>
-      <button class="read-toggle-button">${buttonText}</button>
+      <button class="read-toggle-button">Not Read</button>
     </div>
   `;
+  } else {
+    bookHTML = `
+    <div class="card not-read">
+      <div class="interaction-buttons">
+        <div class="delete-btn">&times;</div>
+      </div>
+      <div class="book-title">${book.title}</div>
+      <div class="info-text">Infos</div>
+      <div class="author">Author: ${book.author}</div>
+      <div class="page-number">Number of pages: ${book.numOfPages}</div>
+      <div class="is-read">${book.info(book.isRead)}</div>
+      <button class="read-toggle-button not-read">Read</button>
+    </div>`;
+  }
+
+  return bookHTML;
+}
+
+function addBookToLibrary(book) {
+  const bookHTML = createBookHTML(book);
+
+  myBooks.push(book);
   myLibrary.push(bookHTML);
 }
 
 function deleteBookFromLibrary(index) {
-  myLibrary.splice(index);
+  myBooks.splice(index, 1);
+  myLibrary.splice(index, 1);
+  displayLibrary();
+}
+
+// Handles toggle button
+function toggleBookIsRead(index) {
+  myBooks[index].isRead = !myBooks[index].isRead;
+  myBooks[index].info(myBooks[index].isRead);
+  myLibrary[index] = createBookHTML(myBooks[index]);
   displayLibrary();
 }
 
 function displayLibrary() {
-  //books.innerHTML = "";
+  let books = document.querySelector(".books");
+
+  books.innerHTML = "";
   myLibrary.forEach((bookHTML) => {
     books.innerHTML += bookHTML;
   });
@@ -65,18 +92,11 @@ function displayLibrary() {
 
   const readToggleButtons = document.querySelectorAll(".read-toggle-button");
 
-  readToggleButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      button.classList.toggle("not-read");
-      if (button.classList.contains("not-read")) {
-        button.innerText = "Read";
-        button.parentElement.style.backgroundColor = "gray";
-      } else {
-        button.innerText = "Not read";
-        button.parentElement.style.backgroundColor = "cornflowerblue";
-      }
+  for (let i = 0; i < readToggleButtons.length; i++) {
+    readToggleButtons[i].addEventListener("click", () => {
+      toggleBookIsRead(i);
     });
-  });
+  }
 }
 
 addBookToLibrary(theHobbit);
@@ -142,7 +162,6 @@ submitBtn.addEventListener("click", (e) => {
     return;
   }
   const newBook = new Book(
-    myLibrary.length,
     bookTitleInput.value,
     authorInput.value,
     pageInput.value,
