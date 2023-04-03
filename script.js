@@ -1,18 +1,20 @@
 let myBooks = [];
 let myLibrary = [];
 
-function Book(title, author, numOfPages, isRead) {
-  this.title = title;
-  this.author = author;
-  this.numOfPages = numOfPages;
-  this.isRead = isRead;
-  this.info = function (isRead) {
-    if (isRead) {
-      return `The ${this.title} by ${this.author}, ${this.numOfPages} pages, read`;
-    } else {
-      return `The ${this.title} by ${this.author}, ${this.numOfPages} pages, not read yet`;
-    }
-  };
+class Book {
+  constructor(title, author, numOfPages, isRead) {
+    this.title = title;
+    this.author = author;
+    this.numOfPages = numOfPages;
+    this.isRead = isRead;
+    this.info = function (isRead) {
+      if (isRead) {
+        return `The ${this.title} by ${this.author}, ${this.numOfPages} pages, read`;
+      } else {
+        return `The ${this.title} by ${this.author}, ${this.numOfPages} pages, not read yet`;
+      }
+    };
+  }
 }
 
 const theHobbit = new Book("Hobbit", "J.R.R. Tolkien", 304, true);
